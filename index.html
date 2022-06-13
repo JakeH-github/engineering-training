@@ -30,20 +30,34 @@
 		background-color: rgb(0,0,0);
 		background-color: rgba(0,0,0, 0.5);
 		z-index: 10;
+
 	}
 	.loading-modal-container {
 		height: 300px;
 		width: 300px;
 		background-color: white;
-		margin-left: auto;
-		margin-right: auto;
+		text-align: center;
+
+	    margin: auto;
+	    position: absolute;
+	    top: 0; left: 0; bottom: 0; right: 0;
+	}
+	#loading-icon-container {
+	    margin: auto;
+	    position: absolute;
+	    top: 0; left: 0; bottom: 0; right: 0;
+	    margin-top: calc(50% - 28px);
 	}
 </style>
 </head>
 <body>
 <div class="overlay-container">
-	<div class="loading-modal-container" id="loading-modal-id">
-		
+	<div class="loading-modal-container">
+		<div id="loading-icon-container">
+		<i class="spinner-border"></i>
+		<br>
+		<span>Loading...</span>
+		</div>
 	</div>
 </div>
 
@@ -118,10 +132,9 @@
 </ul>		
 
 <script>
-const element = document.querySelector('#loading-modal-id');
-const style = getComputedStyle(element);
-document.getElementById("loading-modal-id").style.setProperty("margin-top","calc(50vh - (" + style.height + " / 2)) "); 
-
+// const element = document.querySelector('#loading-modal-id');
+// const style = getComputedStyle(element);
+// document.getElementById("loading-modal-id").style.setProperty("margin-top","calc(50vh - (" + style.height + " / 2)) "); 
 
 </script>
 </body>      
