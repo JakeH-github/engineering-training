@@ -1,0 +1,47 @@
+
+	.logo {
+		width: 100px;
+	}
+	li {
+		font-family: 'Helvetica';
+		font-weight: bold;
+		list-style: none;
+		display: flex;
+	}
+	li:hover {
+		background-color: #aaaaaa;
+	}
+	ul {
+		margin-top: 50px;
+		margin-left: 50px;
+	}
+	.col-sm {
+		border: 1px solid black;
+	}	
+	.overlay-container {
+		display: none;
+		visibility: hidden;
+		height: 100%;
+		width: 100%;
+		position: fixed;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0, 0.5);
+		z-index: 10;
+
+	}
+	.loading-modal-container {
+		height: 300px;
+		width: 300px;
+		background-color: white;
+		text-align: center;
+
+	    margin: auto;
+	    position: absolute;
+	    top: 0; left: 0; bottom: 0; right: 0;
+	}
+	#loading-icon-container {
+	    margin: auto;
+	    position: absolute;
+	    top: 0; left: 0; bottom: 0; right: 0;
+	    margin-top: calc(50% - 28px);
+	}
