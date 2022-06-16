@@ -18,7 +18,7 @@
 	}
 	@media (max-width: 1024px) {
 		.col-sm {
-			min-width: 60vh;
+			min-width: 100%;
 		}
 		li {
 			padding: 20px;
