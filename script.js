@@ -11,15 +11,15 @@ function closeLoadingScreen() {
 	loadingScreen[0].style.display = 'none';
 }
 
-//DIG-71441 below
+//DIG-71477 below
 var gitLinks = document.getElementsByTagName('a');
+var jirasArray = [];
 for (link in gitLinks){
 	if(gitLinks[link].href){
-	console.log(gitLinks[link].href);
+	jirasArray.push({
+		links: gitLinks[link].href,
+		titles: gitLinks[link].innerText,
+	});
 	}
 }
-for (text in gitLinks){
-	if(gitLinks[text].innerText){
-	console.log(gitLinks[text].innerText);
-	}
-}
+console.log(jirasArray);
