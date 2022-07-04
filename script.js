@@ -56,18 +56,18 @@ var jirasArray = [
   }
 ];
 
-function displayTable(){
-	jirasArray.forEach(function(item, index) {
-	    //console.log(item);
-	    var listElement = document.createElement("li");
-	    listElement.className = "col-sm";
-	    $('.primaryList').append($(listElement));
-
-	    //Append data to current list element
-	    var listArray = document.getElementsByTagName('li');
-	    listArray[index].innerHTML = `<i class="bi bi-check-circle-fill"></i>
-			<a href=${item.links}>${item.titles}</a>`
+function renderData(){
+	let response = '';
+	var promise = new Promise((resolve, reject) => {
+		jirasArray.forEach(function(item, index) {
+	    response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${item.links}">${item.titles}</a></li>`;
 	})
+	    resolve(response);
+	});
+	promise.then((value) => {
+	  document.getElementsByClassName('primaryList')[0].innerHTML = value;
+	});
+	
 }
 
 
@@ -78,6 +78,6 @@ function loadData(){
 function printData(){
 	console.log("Data loaded");
 	closeLoadingScreen();
-	displayTable();
+	renderData();
 }
 
