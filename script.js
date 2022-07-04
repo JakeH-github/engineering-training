@@ -57,20 +57,24 @@ var jirasArray = [
 ];
 
 jirasArray.forEach(function(item, index) {
-    console.log(item);
+    //console.log(item);
     var listElement = document.createElement("li");
     listElement.className = "col-sm";
     $('.primaryList').append($(listElement));
-    
+
     //Append data to current list element
     var listArray = document.getElementsByTagName('li');
     listArray[index].innerHTML = `<i class="bi bi-check-circle-fill"></i>
 		<a href=${item.links}>${item.titles}</a>`
-});
+})
 
 
 
+function loadData(){
+	const dataLoaded = setTimeout(printData,1000);
+}
 
-
-
+function printData(){
+	console.log("Data loaded");
+}
 
