@@ -60,7 +60,8 @@ function renderData(){
 	let response = '';
 	var promise = new Promise((resolve, reject) => {
 		jirasArray.forEach(function(item, index) {
-	    response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${item.links}">${item.titles}</a></li>`;
+		let {links: links, titles: titles} = item;
+	    response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${links}">${titles}</a></li>`;
 	})
 	    resolve(response);
 	});
