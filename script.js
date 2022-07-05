@@ -56,6 +56,20 @@ var jirasArray = [
   }
 ];
 
+let dataLoaded = false;
+
+function loadData(){
+	if(dataLoaded === false){
+		openLoadingScreen();
+		const dataLoading = setTimeout(printData,1000);
+		closeLoadingScreen();
+		renderData();
+	}
+	else{
+		console.log("Data is already loaded.")
+	}
+}
+
 function renderData(){
 	let response = '';
 	var promise = new Promise((resolve, reject) => {
@@ -67,18 +81,12 @@ function renderData(){
 	});
 	promise.then((value) => {
 	  document.getElementsByClassName('primaryList')[0].innerHTML = value;
+	  dataLoaded = true;
 	});
-	
 }
 
-
-function loadData(){
-	const dataLoaded = setTimeout(printData,1000);
-}
 
 function printData(){
 	console.log("Data loaded");
-	closeLoadingScreen();
-	renderData();
 }
 
