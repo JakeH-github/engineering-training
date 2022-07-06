@@ -56,6 +56,19 @@ var jirasArray = [
   }
 ];
 
+jirasArrayLinks = jirasArray.map( item => { return item.links });
+jirasArrayTitles = jirasArray.map( item => { return item.titles });
+
+
+class JiraHandler {
+	constructor(links, titles){
+		this.links = links;
+		this.titles = titles;
+	}
+}
+
+let jiraHandler = new JiraHandler(jirasArrayLinks, jirasArrayTitles)
+
 let dataLoaded = false;
 
 const utils = {
@@ -75,9 +88,10 @@ const utils = {
   renderData: function(){
     return new Promise((resolve, reject) => {
       let response = '';
-      jirasArray.forEach(function(item, index) {
-        let {links, titles } = item;
-        response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${links}">${titles}</a></li>`;
+      jiraHandler.links.forEach(function(item, index) {
+        //let {jiraHandler.links, jiraHandler.titles } = item;
+        response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill">
+        			 </i><a href="${jiraHandler.links[index]}">${jiraHandler.titles[index]}</a></li>`;
       })
       resolve(response);
     });
