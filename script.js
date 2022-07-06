@@ -58,35 +58,35 @@ var jirasArray = [
 
 let dataLoaded = false;
 
-function loadData(){
-	if(dataLoaded === false){
-		openLoadingScreen();
-		const dataLoading = setTimeout(printData,1000);
-		closeLoadingScreen();
-		renderData();
-	}
-	else{
-		console.log("Data is already loaded.")
-	}
-}
-
-function renderData(){
-	let response = '';
-	var promise = new Promise((resolve, reject) => {
-		jirasArray.forEach(function(item, index) {
-		let {links: links, titles: titles} = item;
-	    response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${links}">${titles}</a></li>`;
-	})
-	    resolve(response);
-	});
-	promise.then((value) => {
-	  document.getElementsByClassName('primaryList')[0].innerHTML = value;
-	  dataLoaded = true;
-	});
+const utils = {
+  loadData: function(){
+    if(dataLoaded === false){
+      openLoadingScreen();
+      const dataLoading = setTimeout(printData,1000);
+      this.renderData().then((value) => {
+        document.getElementsByClassName('primaryList')[0].innerHTML = value;
+        dataLoaded = true;
+      });
+    }
+    else{
+      console.log("Data is already loaded.")
+    }
+  },
+  renderData: function(){
+    return new Promise((resolve, reject) => {
+      let response = '';
+      jirasArray.forEach(function(item, index) {
+        let {links, titles } = item;
+        response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${links}">${titles}</a></li>`;
+      })
+      resolve(response);
+    });
+  }
 }
 
 
 function printData(){
+	closeLoadingScreen();
 	console.log("Data loaded");
 }
 
