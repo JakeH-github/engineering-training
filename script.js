@@ -39,6 +39,8 @@ const jiraTitles = [
 "UI Libraries - Add Bootstrap to your page",  
 ];
 
+let jiraTemplate = {icon: "bi bi-check-circle-fill"};
+
 class JiraHandler {
 	constructor(links, titles){
 		this.links = links;
@@ -51,16 +53,19 @@ class JiraHandler {
   createJiraObject() {
     for (let index = 0; index < this.titles.length; index++) {
       this.jiraObject.push({
+        ...jiraTemplate,
         link: this.links[index],
         title: this.titles[index],
-    });
+       });
     }
+    console.log(this.jiraObject);
   }
 }
 
 let jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 
 let dataLoaded = false;
+
 
 const utils = {
   loadData: function(){
@@ -80,8 +85,8 @@ const utils = {
     return new Promise((resolve, reject) => {
       let response = '';
       jiraHandler.jiraObject.forEach(function(item, index) {
-        let {link, title } = item;
-        response += `<li><i class="bi bi-x"></i><i class="bi bi-check-circle-fill"></i><a href="${link}">${title}</a></li>`;
+        let {icon, link, title } = item;
+        response += `<li><i class="bi bi-x"></i><i class="${icon}"></i><a href="${link}">${title}</a></li>`;
       })
       resolve(response);
     });
