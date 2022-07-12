@@ -39,7 +39,12 @@ const jiraTitles = [
 "UI Libraries - Add Bootstrap to your page",  
 ];
 
+function getRandomNumber() {
+  return Math.floor(Math.random() * 3) !== 0;
+}
+
 let jiraTemplate = {icon: "bi bi-check-circle-fill"};
+let errorJiraTemplate = {icon: "bi bi-x-circle"};
 
 class JiraHandler {
 	constructor(links, titles){
@@ -53,7 +58,7 @@ class JiraHandler {
   createJiraObject() {
     for (let index = 0; index < this.titles.length; index++) {
       this.jiraObject.push({
-        ...jiraTemplate,
+        ...(getRandomNumber() ? jiraTemplate : errorJiraTemplate),
         link: this.links[index],
         title: this.titles[index],
        });
