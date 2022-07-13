@@ -69,17 +69,17 @@ class JiraHandler {
 
 let jiraHandler = new JiraHandler(jiraLinks, jiraTitles);
 
-let dataLoaded = false;
+
 
 
 const utils = {
-  loadData: function(){
+  loadData: function(callBack, dataLoaded){
     if(dataLoaded === false){
       openLoadingScreen();
       const dataLoading = setTimeout(printData,1000);
       this.renderData().then((value) => {
         document.getElementsByClassName('primaryList')[0].innerHTML = value;
-        dataLoaded = true;
+        callBack();
       });
     }
     else{
@@ -104,3 +104,14 @@ function printData(){
 	console.log("Data loaded");
 }
 
+const initModalButton=()=>{
+let dataLoaded = false;
+console.log("dataLoaded", dataLoaded)
+modalButton.addEventListener("click", ()=>{
+	utils.loadData(()=>{
+		dataLoaded=true;
+	},dataLoaded);
+})
+}
+
+initModalButton();
