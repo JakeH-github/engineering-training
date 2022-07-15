@@ -1,3 +1,4 @@
+(async function() {
 console.log("Engineering Training!");
 console.log("modalButton", modalButton);
 
@@ -105,13 +106,21 @@ function printData(){
 }
 
 const initModalButton=()=>{
-let dataLoaded = false;
-console.log("dataLoaded", dataLoaded)
-modalButton.addEventListener("click", ()=>{
-	utils.loadData(()=>{
-		dataLoaded=true;
-	},dataLoaded);
-})
+	return new Promise((resolve, reject) => {
+		let dataLoaded = false;
+		console.log("dataLoaded", dataLoaded)
+		modalButton.addEventListener("click", ()=>{
+			utils.loadData(()=>{
+				dataLoaded=true;
+				resolve(dataLoaded);
+			},dataLoaded);
+		})
+	})
 }
 
-initModalButton();
+
+console.log("BEFORE initModalButton is called");
+await initModalButton();
+console.log("AFTER initModalButton is called");
+
+})();
