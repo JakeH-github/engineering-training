@@ -1,11 +1,12 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const path = require('path');
+const router = express.Router();
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+router.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname+'/index.html'));
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+app.use('/', router);
+app.listen(process.env.port || 3000);
+console.log("App listening on localhost port 3000");
