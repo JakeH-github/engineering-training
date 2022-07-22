@@ -12,6 +12,6 @@ router.get('/getJiraTickets', (req, res) => {
 })
 
 app.use('/', router);
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'));
 app.listen(process.env.port || 3000);
 console.log("App listening on localhost port 3000");

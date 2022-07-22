@@ -30,14 +30,14 @@ const jiraLinks = [
 const jiraTitles = [
 "Create a public GitHub repo",
 "DIG-70771 Create index.html file",
-"Add anchor tags for each completed subtasks.",  
+"Add anchor tags for each completed subtasks.",
 "Make unordered list of anchor tags",
 "Add TWM logo as an image",
-"Add style attributes to the img tag to setting the height",  
-"Add a head, add a style to the head", 
-"Add a selector inside style tag that targets the list items and removes the bullet",  
-"Pseudo-selectors - Add hover styling to list elements",  
-"UI Libraries - Add Bootstrap to your page",  
+"Add style attributes to the img tag to setting the height",
+"Add a head, add a style to the head",
+"Add a selector inside style tag that targets the list items and removes the bullet",
+"Pseudo-selectors - Add hover styling to list elements",
+"UI Libraries - Add Bootstrap to your page",
 ];
 
 function getRandomNumber() {
@@ -55,7 +55,7 @@ class JiraHandler {
           this.createJiraObject();
   }
 
- 
+
   createJiraObject() {
     for (let index = 0; index < this.titles.length; index++) {
       this.jiraObject.push({
@@ -81,6 +81,12 @@ const utils = {
       this.renderData().then((value) => {
         document.getElementsByClassName('primaryList')[0].innerHTML = value;
         callBack();
+        const callEndpoint = async () => await fetch('/getJiraTickets').then((value) =>{
+            value.json().then((data) => {
+                console.log(data);
+            });
+        });
+        callEndpoint();
       });
     }
     else{
