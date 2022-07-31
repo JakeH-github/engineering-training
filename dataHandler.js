@@ -1,6 +1,27 @@
+const { Octokit } = require("@octokit/rest");
+require('dotenv').config();
 
+const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN,
+    baseUrl: 'https://api.github.com',
+    log: {
+        debug: () => {},
+        info: () => {},
+        warn: console.warn,
+        error: console.error
+    },
+    request: {
+        agent: undefined,
+        fetch: undefined,
+        timeout: 0
+    }
+});
 
-//dataHandler
+octokit.rest.repos.listCommits({
+    owner: "JakeH-github",
+    repo: "engineering-training",
+}).then((value) => {console.log(value)});
+
 class DataHandler {
     constructor(links, titles) {
         this.links = links;
