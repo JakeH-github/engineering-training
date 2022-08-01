@@ -17,10 +17,7 @@ const octokit = new Octokit({
     }
 });
 
-octokit.rest.repos.listCommits({
-    owner: "JakeH-github",
-    repo: "engineering-training",
-}).then((value) => {console.log(value)});
+
 
 class DataHandler {
     constructor(links, titles) {
@@ -28,6 +25,7 @@ class DataHandler {
         this.titles = titles;
         this.jiraObject = [];
         this.createJiraObject();
+        this.fetchGitHubData();
     }
     createJiraObject() {
         for (let index = 0; index < this.titles.length; index++) {
@@ -39,7 +37,20 @@ class DataHandler {
         }
         console.log(this.jiraObject);
     }
+    fetchGitHubData() {
+        octokit.rest.repos.listCommits({
+            owner: "JakeH-github",
+            repo: "engineering-training",
+        }).then((value) => {
+            let arrayLength = value.data.length;
+            for (let i=0; i<arrayLength; i++){
+                console.log(value.data[i].commit.message)
+            }
+        });
+    }
 }
+
+//{console.log(value.data[0].commit.message)});
 
 const jiraLinks = [
     "https://github.com/JakeH-github/engineering-training",
