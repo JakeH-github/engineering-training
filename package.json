@@ -21,7 +21,8 @@
   "dependencies": {
     "@octokit/rest": "^19.0.3",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "jira-client": "^8.1.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.9",

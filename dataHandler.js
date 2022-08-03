@@ -1,6 +1,26 @@
 const { Octokit } = require("@octokit/rest");
 require('dotenv').config();
 
+const JiraApi = require('jira-client');
+
+let jira = new JiraApi({
+    protocol: 'https',
+    host: 'totalwine.atlassian.net',
+    username: 'jhorvath@totalwine.com',
+    password: process.env.JIRA_TOKEN,
+    apiVersion: '2',
+    strictSSL: true
+});
+
+jira.findIssue("DIG-72591")
+    .then(issue => {
+        console.log(`Status: ${issue.fields.status.name}`);
+    })
+    .catch(err => {
+        console.error(err);
+    });
+
+
 const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
     baseUrl: 'https://api.github.com',
@@ -35,7 +55,7 @@ class DataHandler {
                 title: this.titles[index],
             });
         }
-        console.log(this.jiraObject);
+        //console.log(this.jiraObject);
     }
     fetchGitHubData() {
         octokit.rest.repos.listCommits({
@@ -44,13 +64,12 @@ class DataHandler {
         }).then((value) => {
             let arrayLength = value.data.length;
             for (let i=0; i<arrayLength; i++){
-                console.log(value.data[i].commit.message)
+                //console.log(value.data[i].commit.message)
             }
         });
     }
 }
 
-//{console.log(value.data[0].commit.message)});
 
 const jiraLinks = [
     "https://github.com/JakeH-github/engineering-training",
