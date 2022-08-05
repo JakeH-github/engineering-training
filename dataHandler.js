@@ -58,14 +58,22 @@ class DataHandler {
         //console.log(this.jiraObject);
     }
     fetchGitHubData() {
+        const regex = /[A-Z]{2,}-\d+/;
+        let commitArray = [];
         octokit.rest.repos.listCommits({
             owner: "JakeH-github",
             repo: "engineering-training",
         }).then((value) => {
             let arrayLength = value.data.length;
             for (let i=0; i<arrayLength; i++){
-                //console.log(value.data[i].commit.message)
+                let currentCommit = value.data[i].commit.message;
+                    let duplicate = commitArray.indexOf(currentCommit.match(regex)[0]);
+                    console.log(duplicate);
+                    if(duplicate === -1){
+                        commitArray.push(currentCommit.match(regex)[0]);
+                    }
             }
+            console.log(commitArray);
         });
     }
 }
