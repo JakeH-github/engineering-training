@@ -47,6 +47,7 @@ class DataHandler {
         this.createJiraObject();
         this.fetchGitHubData();
     }
+
     createJiraObject() {
         for (let index = 0; index < this.titles.length; index++) {
             this.jiraObject.push({
@@ -57,6 +58,7 @@ class DataHandler {
         }
         //console.log(this.jiraObject);
     }
+
     fetchGitHubData() {
         const regex = /[A-Z]{2,}-\d+/;
         let commitArray = [];
@@ -65,16 +67,29 @@ class DataHandler {
             repo: "engineering-training",
         }).then((value) => {
             let arrayLength = value.data.length;
-            for (let i=0; i<arrayLength; i++){
+            for (let i = 0; i < arrayLength; i++) {
                 let currentCommit = value.data[i].commit.message;
-                    let duplicate = commitArray.indexOf(currentCommit.match(regex)[0]);
-                    console.log(duplicate);
-                    if(duplicate === -1){
-                        commitArray.push(currentCommit.match(regex)[0]);
-                    }
+                let duplicate = commitArray.indexOf(currentCommit.match(regex)[0]);
+                if (duplicate === -1) {
+                    commitArray.push(currentCommit.match(regex)[0]);
+                }
             }
             console.log(commitArray);
+            this.fetchJiraSummary(commitArray);
         });
+    }
+
+    fetchJiraSummary(jiraNumberArray) {
+        for (let i=0; i<jiraNumberArray.length; i++) {
+            console.log(jiraNumberArray[i]);
+            jira.findIssue(jiraNumberArray[i])
+                .then(issue => {
+                 console.log(`Summary: ${issue.fields.summary}`);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        }
     }
 }
 
