@@ -74,22 +74,37 @@ class DataHandler {
                     commitArray.push(currentCommit.match(regex)[0]);
                 }
             }
-            console.log(commitArray);
+            //console.log(commitArray);
             this.fetchJiraSummary(commitArray);
         });
     }
 
-    fetchJiraSummary(jiraNumberArray) {
-        for (let i=0; i<jiraNumberArray.length; i++) {
-            console.log(jiraNumberArray[i]);
+    // renderData: function(data){
+    // return new Promise((resolve, reject) => {
+
+    fetchJiraIssue(jiraNumberArray, i) {
+        return new Promise((resolve, reject) => {
             jira.findIssue(jiraNumberArray[i])
                 .then(issue => {
-                 console.log(`Summary: ${issue.fields.summary}`);
+                    resolve({title: `${issue.fields.summary}`, link: 'https://totalwine.atlassian.net/browse/'+jiraNumberArray[i]})
                 })
                 .catch(err => {
                     console.error(err);
+                    reject();
                 });
-        }
+        })
+    }
+
+    fetchJiraSummary(jiraNumberArray) {
+            let promises = [];
+            for (let i = 0; i < jiraNumberArray.length; i++) {
+                promises.push(this.fetchJiraIssue(jiraNumberArray, i))// `https://totalwine.atlassian.net/browse/${jiraNumberArray[i]}`)
+                //console.log(jiraNumberArray[i]);
+            }
+            Promise.all(promises).then(data => {
+                console.log(data);
+            })
+            //console.log(promises);
     }
 }
 
