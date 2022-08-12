@@ -45,7 +45,7 @@ class DataHandler {
         this.titles = titles;
         this.jiraObject = [];
         this.createJiraObject();
-        this.fetchGitHubData();
+        //this.fetchGitHubData();
     }
 
     createJiraObject() {
@@ -59,7 +59,7 @@ class DataHandler {
         //console.log(this.jiraObject);
     }
 
-    fetchGitHubData() {
+    fetchGitHubData(callback) {
         const regex = /[A-Z]{2,}-\d+/;
         let commitArray = [];
         octokit.rest.repos.listCommits({
@@ -75,7 +75,7 @@ class DataHandler {
                 }
             }
             //console.log(commitArray);
-            this.fetchJiraSummary(commitArray);
+            this.fetchJiraSummary(commitArray, callback);
         });
     }
 
@@ -95,14 +95,14 @@ class DataHandler {
         })
     }
 
-    fetchJiraSummary(jiraNumberArray) {
+    fetchJiraSummary(jiraNumberArray, callback) {
             let promises = [];
             for (let i = 0; i < jiraNumberArray.length; i++) {
                 promises.push(this.fetchJiraIssue(jiraNumberArray, i))// `https://totalwine.atlassian.net/browse/${jiraNumberArray[i]}`)
                 //console.log(jiraNumberArray[i]);
             }
             Promise.all(promises).then(data => {
-                console.log(data);
+                callback(data);
             })
             //console.log(promises);
     }

@@ -9,7 +9,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/getJiraTickets', (req, res) => {
-    res.json({ jirasObject: dataHandler.jiraObject });
+    dataHandler.fetchGitHubData(function(data){
+        res.json({ jirasObject: data });
+    });
 })
 
 app.use('/', router);
