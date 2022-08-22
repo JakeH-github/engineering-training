@@ -14,8 +14,8 @@ function closeLoadingScreen() {
 }
 
 const utils = {
-    loadData: function(callBack, dataLoaded){
-        if(dataLoaded === false){
+
+        loadData: function(callBack){
             openLoadingScreen();
             const dataLoading = setTimeout(printData,1000);
             const callEndpoint = async () => await fetch('/getJiraTickets').then((value) =>{
@@ -29,10 +29,6 @@ const utils = {
             });
             callEndpoint();
 
-        }
-        else{
-            console.log("Data is already loaded.")
-        }
     },
     renderData: function(data){
         return new Promise((resolve, reject) => {
