@@ -12,12 +12,6 @@ ReactDOM.render(
 console.log("Engineering Training!");
 console.log("modalButton", modalButton);
 
-
-
-
-
-
-
 const initModalButton=()=>{
 	return new Promise((resolve, reject) => {
 		let dataLoaded = false;
