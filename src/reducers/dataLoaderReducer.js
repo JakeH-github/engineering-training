@@ -7,7 +7,13 @@ function dataLoaderReducer(state = INITIAL_STATE, action) {
         case "TOGGLE_DATALOADED":
             return {
                 ...state,
+                loading:false,
                 dataLoaded: !state.dataLoaded,
+            };
+        case "TOGGLE_DATALOADING":
+            return {
+                ...state,
+                loading:true,
             };
         default:
             return state.dataLoaded

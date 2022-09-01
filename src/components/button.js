@@ -11,16 +11,15 @@ export default class Button extends React.Component {
 
 
     handleOnClick(){
-        const modalContainer = document.getElementById("modalContainer");
         const dataLoaded = store.getState().dataLoaded;
         if (dataLoaded) {
             return
         }
 
-        modalContainer.classList.toggle("hidden");
+        store.dispatch({type:"TOGGLE_DATALOADING"})
 
         utils.loadData(()=>{
-            store.dispatch({type:"TOGGLE_DATALOADED", loading: false})
+            store.dispatch({type:"TOGGLE_DATALOADED"})
         });
     }
     render() {
