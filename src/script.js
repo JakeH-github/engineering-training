@@ -5,6 +5,7 @@ import store from './store';
 import {createRoot} from 'react-dom/client'
 import Button from "./components/button";
 import Modal from "./components/Modal";
+import Logo from "./components/logo";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -13,5 +14,7 @@ root.render(
 <Provider store={store}>
     <Button/>
     <Modal/>
+    <Logo/>
     </Provider>
+
 );
