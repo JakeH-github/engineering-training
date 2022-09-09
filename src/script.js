@@ -6,6 +6,7 @@ import {createRoot} from 'react-dom/client'
 import Button from "./components/button";
 import Modal from "./components/Modal";
 import Logo from "./components/logo";
+import List from "./components/list";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -15,6 +16,7 @@ root.render(
     <Button/>
     <Modal/>
     <Logo/>
+    <List/>
     </Provider>
 
 );
