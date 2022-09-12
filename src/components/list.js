@@ -1,22 +1,10 @@
 import React from 'react';
 import ListItem from "./listitem";
+import {connect} from "react-redux";
 
 const List = (props) => {
-    const data = {
-        "jirasObject": [{
-            "icon": "bi bi-check-circle-fill",
-            "title": "Conditional equality check",
-            "link": "https://totalwine.atlassian.net/browse/DIG-71865"
-        }, {
-            "icon": "bi bi-check-circle-fill",
-            "title": "Object Methods, and using 'this'",
-            "link": "https://totalwine.atlassian.net/browse/DIG-71886"
-        }, {
-            "icon": "bi bi-check-circle-fill",
-            "title": "JavaScript Classes using 'this'",
-            "link": "https://totalwine.atlassian.net/browse/DIG-71939"
-        }]
-    }
+    const data = props.data;
+    if(!data){return;}
 
     return (
         <ul className="primaryList">
@@ -28,4 +16,13 @@ const List = (props) => {
     //return
 }
 
-export default List;
+
+function mapStateToProps(state) {
+    const { dataLoaded } = state;
+    console.log(state);
+    return { data: dataLoaded.data };
+}
+
+export default connect(mapStateToProps)(List)
+
+//export default List;

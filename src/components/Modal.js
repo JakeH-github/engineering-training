@@ -11,10 +11,10 @@ class Modal extends React.Component {
     }
     render() {
         if(this.props.loading){
-          return  <div class="overlay-container">
-                    <div class="loading-modal-container" id="modalContainer">
+          return  <div className="overlay-container">
+                    <div className="loading-modal-container" id="modalContainer">
                     <div id="loading-icon-container">
-                    <i class="spinner-border"></i>
+                    <i className="spinner-border"></i>
 
                     <span>Loading...</span>
 
@@ -28,7 +28,7 @@ class Modal extends React.Component {
 function mapStateToProps(state) {
     const { dataLoaded } = state;
     return { loading: dataLoaded.loading };
-    console.log(state);
+    //console.log(state);
 }
 
 export default connect(mapStateToProps)(Modal)

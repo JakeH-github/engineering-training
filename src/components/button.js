@@ -18,9 +18,11 @@ export default class Button extends React.Component {
 
         store.dispatch({type:"TOGGLE_DATALOADING"})
 
-        utils.loadData(()=>{
+        utils.loadData((data)=>{
             store.dispatch({type:"TOGGLE_DATALOADED"})
+            store.dispatch({type:"TOGGLE_SUCCESS", data})
         });
+
     }
     render() {
         return <button onClick={this.handleOnClick}>Load Data</button>;

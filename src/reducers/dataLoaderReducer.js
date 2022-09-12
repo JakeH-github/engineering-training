@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     dataLoaded: false,
+    data: [],
 };
 
 function dataLoaderReducer(state = INITIAL_STATE, action) {
@@ -15,6 +16,11 @@ function dataLoaderReducer(state = INITIAL_STATE, action) {
                 ...state,
                 loading:true,
             };
+        case "TOGGLE_SUCCESS":
+            return {
+                ...state,
+                data: action.data,
+            }
         default:
             return state.dataLoaded
     }
