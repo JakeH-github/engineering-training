@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     dataLoaded: false,
     data: [],
+    error: null,
 };
 
 function dataLoaderReducer(state = INITIAL_STATE, action) {
@@ -20,6 +21,12 @@ function dataLoaderReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 data: action.data,
+            }
+        case "DATA_FAILURE":
+            return {
+                ...state,
+                loading:false,
+                error:"Node failed to launch",
             }
         default:
             return state.dataLoaded

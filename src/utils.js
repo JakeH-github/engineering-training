@@ -9,7 +9,10 @@ const utils = {
                     callBack(data);
                 });
             });
-            callEndpoint();
+            callEndpoint().catch((e) => {
+                store.dispatch({type:"DATA_FAILURE"})
+                console.error(e);
+            });
 
     },
 }

@@ -7,6 +7,7 @@ import Button from "./components/button";
 import Modal from "./components/Modal";
 import Logo from "./components/logo";
 import List from "./components/list";
+import ErrorMessage from "./components/errorMessage";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -17,6 +18,7 @@ root.render(
     <Modal/>
     <Logo/>
     <List/>
+    <ErrorMessage/>
     </Provider>
 
 );
