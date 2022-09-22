@@ -14,9 +14,11 @@ const root = createRoot(rootElement);
 
 root.render(
 <Provider store={store}>
+    <header>
     <Button/>
     <Modal/>
     <Logo/>
+    </header>
     <List/>
     <ErrorMessage/>
     </Provider>
