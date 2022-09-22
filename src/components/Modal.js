@@ -2,8 +2,16 @@ import React from 'react';
 import utils from "../utils";
 import store from '../store';
 import { connect } from 'react-redux'
+import styled from 'styled-components';
 
-
+const ModalContainer = styled.div`
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.5);
+    z-index: 10;
+`;
 
 class Modal extends React.Component {
     constructor(props) {
@@ -11,7 +19,8 @@ class Modal extends React.Component {
     }
     render() {
         if(this.props.loading){
-          return  <div className="overlay-container">
+          return  <ModalContainer>
+            {/*<div className="overlay-container">*/}
                     <div className="loading-modal-container" id="modalContainer">
                     <div id="loading-icon-container">
                     <i className="spinner-border"></i>
@@ -20,7 +29,8 @@ class Modal extends React.Component {
 
                 </div>
                 </div>
-                </div>
+          </ModalContainer>
+                {/*</div>*/}
         }
     }
 }
@@ -28,7 +38,6 @@ class Modal extends React.Component {
 function mapStateToProps(state) {
     const { dataLoaded } = state;
     return { loading: dataLoaded.loading };
-    //console.log(state);
 }
 
 export default connect(mapStateToProps)(Modal)

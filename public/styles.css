@@ -34,15 +34,15 @@
 	.col-sm {
 		border: 1px solid black;
 	}
-	.overlay-container {
-		height: 100%;
-		width: 100%;
-		position: fixed;
-		background-color: rgb(0,0,0);
-		background-color: rgba(0,0,0, 0.5);
-		z-index: 10;
+	/*.overlay-container {*/
+	/*	height: 100%;*/
+	/*	width: 100%;*/
+	/*	position: fixed;*/
+	/*	background-color: rgb(0,0,0);*/
+	/*	background-color: rgba(0,0,0, 0.5);*/
+	/*	z-index: 10;*/
 
-	}
+	/*}*/
 	.loading-modal-container {
 		height: 300px;
 		width: 300px;
