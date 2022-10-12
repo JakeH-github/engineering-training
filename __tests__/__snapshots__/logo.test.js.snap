@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render the logo 1`] = `
+<img
+  alt="total wine logo"
+  className="logo"
+  src="https://www.totalwine.com/global-static-resources/@totalwinelabs/twc-icon/3.13.0/twm-logo-color.svg#twm-logo-color"
+/>
+`;

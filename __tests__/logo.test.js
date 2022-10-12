@@ -3,5 +3,10 @@ import Logo from "../src/components/logo";
 import React from "react";
 
 test('Render the logo', () => {
-    render(<Logo />);
+    const component = renderer.create(
+        <Logo/>,
+    );
+
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });
