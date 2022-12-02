@@ -9,7 +9,7 @@ const List = (props) => {
     return (
         <ul className="primaryList">
             {data.jirasObject.map((item, i) => (
-                <ListItem key={i} title={item.title} icon={item.icon} link={item.link}></ListItem>
+                <ListItem key={i} title={item.title} iconText={item.iconText} icon={item.icon} link={item.link}></ListItem>
             ))}
         </ul>
     );

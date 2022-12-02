@@ -60,7 +60,7 @@ class DataHandler {
     }
 
     fetchGitHubData(callback) {
-        const regex = /[A-Z]{2,}-\d+/;
+        const regex = /[A-Za-z]{2,}-\d+/;
         let commitArray = [];
         octokit.rest.repos.listCommits({
             owner: "JakeH-github",
@@ -86,7 +86,20 @@ class DataHandler {
         return new Promise((resolve, reject) => {
             jira.findIssue(jiraNumberArray[i])
                 .then(issue => {
-                    resolve({title: `${issue.fields.summary}`, link: 'https://totalwine.atlassian.net/browse/'+jiraNumberArray[i]})
+                    const { summary, status: { id, name } } = issue.fields;
+                    let icon = "primary"; // Default will we primary, id: 1
+                    if (id === "3"){
+                        icon = "secondary";
+                    }
+                    // console.log(id, typeof id);
+                    // console.log(icon);
+                    console.log(name);
+                    resolve({
+                        icon: icon,
+                        iconText: name,
+                        title: `${issue.fields.summary}`,
+                        link: 'https://totalwine.atlassian.net/browse/'+jiraNumberArray[i]
+                    });
                 })
                 .catch(err => {
                     console.error(err);
